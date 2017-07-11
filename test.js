@@ -4,7 +4,7 @@ var server = require('./index');
 var request = require('supertest');
 
 it('Correctly returns pi', (done) => {
-  request(server.server)
+  request(server.app)
     .get("/math/pi")
     .end((err, res) => {
       expect(res.status).to.equal(200)
