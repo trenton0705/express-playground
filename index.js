@@ -1,42 +1,18 @@
 var express = require('express')
 var app = express()
-
-app.get('/', function (req, res) {
-  res.send('Hello!')
-})
+var sum = require('./sum')
+var calculate = require('./calculate')
 
 app.get('/math/pi', function (req, res) {
   res.send(String(Math.PI))
 })
 
-app.get('/math/calculate', (req, res) => {
-  var operator = req.query.operation
-  console.log(operator);
-  var x = parseFloat(req.query.x)
-  var y = parseFloat(req.query.y)
+app.get('/math/calculate', calculate)
 
-  switch (operator) {
-    case 'add':
-      res.send(String(x + y))
-      break;
-    case 'subtract':
-      res.send(String(x - y))
-      break;
-    case 'multiply':
-      res.send(String(x * y))
-      break;
-    case 'divide':
-      res.send(String(x / y))
-      break;
-    default:
-      res.send(String(x + y))
-  }
-})
-
-
+app.post('/math/sum', sum)
 
 module.exports = {
   app: app
 }
 
-server.listen(8080)
+app.listen(8080)
