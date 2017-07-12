@@ -5,16 +5,20 @@ module.exports = (req, res) => {
   var height = req.body.height
 
   if (type === 'circle') {
-    if (!req.body.radius) {
+
+    if (!radius) {
       res.send('Invalid')
     } else {
-      res.send(`Area of a circle with radius of ${req.body.radius} is ${String(Math.PI * (radius * radius))}`)
+      res.send(`Area of a circle with radius of ${radius} is ${Math.PI * Math.pow(radius, 2)}`)
     }
+
   } else {
-    if (!req.body.width || !req.body.height) {
+
+    if (!width || !height) {
       res.send('Invalid')
     } else {
-      res.send(`Area of a ${req.body.width}x${req.body.height} rectangle is ${String(width * height)}`)
+      res.send(`Area of a ${width}x${height} rectangle is ${width * height}`)
     }
+
   }
 }
